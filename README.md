@@ -1,8 +1,8 @@
-# Getimg AI TypeScript API Library
+# getimg.ai TypeScript API Library
 
 [![NPM version](<https://img.shields.io/npm/v/getimg-ai.svg?label=npm%20(stable)>)](https://npmjs.org/package/getimg-ai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/getimg-ai)
 
-This library provides convenient access to the Getimg AI REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the getimg.ai REST API from server-side TypeScript or JavaScript.
 
 The full API of this library can be found in [api.md](api.md).
 
@@ -18,20 +18,76 @@ npm install getimg-ai
 
 The full API of this library can be found in [api.md](api.md).
 
+### Generate an image
+
 <!-- prettier-ignore -->
-```js
+```ts
+import { writeFile } from 'node:fs/promises';
 import GetimgAI from 'getimg-ai';
 
 const client = new GetimgAI({
   apiKey: process.env['GETIMG_API_KEY'], // This is the default and can be omitted
 });
 
-const response = await client.images.generate({
+const result = await client.images.generate({
   model: 'seedream-5-lite',
-  prompt: 'A cinematic portrait of a cat astronaut',
+  prompt: 'A watercolor painting of a mountain village at dawn',
+  aspect_ratio: '16:9',
+  resolution: '2K',
+  output_format: 'png',
 });
 
-console.log(response.id);
+const download = await fetch(result.data[0].url);
+const buffer = Buffer.from(await download.arrayBuffer());
+await writeFile('output.png', buffer);
+
+console.log(`Saved output.png (${result.data[0].width}x${result.data[0].height})`);
+console.log(`Cost: ${result.usage?.total_cost} (${result.usage?.billable_unit})`);
+```
+
+### Generate a video
+
+Video generation is asynchronous — submit a request, poll until it's `completed`, then download the result.
+
+<!-- prettier-ignore -->
+```ts
+import { writeFile } from 'node:fs/promises';
+import GetimgAI from 'getimg-ai';
+
+const client = new GetimgAI();
+
+// Step 1: Submit
+const { id } = await client.videos.generations.create({
+  model: 'seedance-v1-pro',
+  prompt: 'A timelapse of clouds rolling over a mountain peak',
+  aspect_ratio: '16:9',
+  resolution: '1080p',
+  duration: 10,
+  sound: true,
+});
+console.log(`Submitted: ${id}`);
+
+// Step 2: Poll
+let result = await client.videos.generations.retrieve(id);
+while (result.status === 'pending') {
+  await new Promise((r) => setTimeout(r, 5000));
+  result = await client.videos.generations.retrieve(id);
+  console.log(`Status: ${result.status}`);
+}
+
+if (result.status === 'failed') {
+  throw new Error(`Failed: ${result.error.message}`);
+}
+
+// Step 3: Download
+const video = result.data[0];
+const download = await fetch(video.url);
+const buffer = Buffer.from(await download.arrayBuffer());
+await writeFile('output.mp4', buffer);
+
+console.log(`Saved output.mp4 (${video.width}x${video.height}, ${video.duration}s, ${video.fps}fps)`);
+console.log(`Sound: ${video.has_sound}`);
+console.log(`Cost: ${result.usage?.total_cost} (${result.usage?.quantity} ${result.usage?.billable_unit})`);
 ```
 
 ### Request & Response types
@@ -101,7 +157,7 @@ You can use the `maxRetries` option to configure or disable this:
 ```js
 // Configure the default for all requests:
 const client = new GetimgAI({
-  maxRetries: 0, // default is 2
+  maxRetries: 0, // default is 5
 });
 
 // Or, configure per-request:
