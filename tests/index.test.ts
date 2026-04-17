@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIPromise } from 'getimg/core/api-promise';
+import { APIPromise } from 'getimg-ai/core/api-promise';
 
 import util from 'node:util';
-import GetimgAI from 'getimg';
-import { APIUserAbortError } from 'getimg';
+import GetimgAI from 'getimg-ai';
+import { APIUserAbortError } from 'getimg-ai';
 const defaultFetch = fetch;
 
 describe('instantiate client', () => {

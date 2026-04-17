@@ -1,4 +1,4 @@
-import { createPathTagFunction, encodeURIPath } from 'getimg/internal/utils/path';
+import { createPathTagFunction, encodeURIPath } from 'getimg-ai/internal/utils/path';
 import { inspect } from 'node:util';
 import { runInNewContext } from 'node:vm';
 

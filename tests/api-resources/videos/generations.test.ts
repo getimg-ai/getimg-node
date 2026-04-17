@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import GetimgAI from 'getimg';
+import GetimgAI from 'getimg-ai';
 
 const client = new GetimgAI({
   apiKey: 'My API Key',

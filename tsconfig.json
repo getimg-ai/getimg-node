@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "getimg/*": ["./src/*"],
-      "getimg": ["./src/index.ts"]
+      "getimg-ai/*": ["./src/*"],
+      "getimg-ai": ["./src/index.ts"]
     },
     "noEmit": true,
 
