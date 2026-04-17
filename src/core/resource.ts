@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import type { Getimg } from '../client';
+import type { GetimgAI } from '../client';
 
 export abstract class APIResource {
-  protected _client: Getimg;
+  protected _client: GetimgAI;
 
-  constructor(client: Getimg) {
+  constructor(client: GetimgAI) {
     this._client = client;
   }
 }

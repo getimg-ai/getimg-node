@@ -44,7 +44,7 @@ export interface ClientOptions {
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['GETIMG_BASE_URL'].
+   * Defaults to process.env['GETIMG_AI_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -75,7 +75,7 @@ export interface ClientOptions {
    * The maximum number of times that the client will retry a request in case of a
    * temporary failure, like a network error or a 5XX error from the server.
    *
-   * @default 2
+   * @default 5
    */
   maxRetries?: number | undefined;
 
@@ -98,7 +98,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['GETIMG_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['GETIMG_AI_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -111,9 +111,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Getimg API.
+ * API Client for interfacing with the Getimg AI API.
  */
-export class Getimg {
+export class GetimgAI {
   apiKey: string;
 
   baseURL: string;
@@ -129,25 +129,25 @@ export class Getimg {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Getimg API.
+   * API Client for interfacing with the Getimg AI API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['GETIMG_API_KEY'] ?? undefined]
-   * @param {string} [opts.baseURL=process.env['GETIMG_BASE_URL'] ?? https://api.getimg.ai] - Override the default base URL for the API.
-   * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
+   * @param {string} [opts.baseURL=process.env['GETIMG_AI_BASE_URL'] ?? https://api.getimg.ai] - Override the default base URL for the API.
+   * @param {number} [opts.timeout=5 minutes] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
-   * @param {number} [opts.maxRetries=2] - The maximum number of times the client will retry a request.
+   * @param {number} [opts.maxRetries=5] - The maximum number of times the client will retry a request.
    * @param {HeadersLike} opts.defaultHeaders - Default headers to include with every request to the API.
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('GETIMG_BASE_URL'),
+    baseURL = readEnv('GETIMG_AI_BASE_URL'),
     apiKey = readEnv('GETIMG_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
-      throw new Errors.GetimgError(
-        "The GETIMG_API_KEY environment variable is missing or empty; either provide it, or instantiate the Getimg client with an apiKey option, like new Getimg({ apiKey: 'My API Key' }).",
+      throw new Errors.GetimgAIError(
+        "The GETIMG_API_KEY environment variable is missing or empty; either provide it, or instantiate the GetimgAI client with an apiKey option, like new GetimgAI({ apiKey: 'My API Key' }).",
       );
     }
 
@@ -158,17 +158,17 @@ export class Getimg {
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? Getimg.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? GetimgAI.DEFAULT_TIMEOUT /* 5 minutes */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('GETIMG_LOG'), "process.env['GETIMG_LOG']", this) ??
+      parseLogLevel(readEnv('GETIMG_AI_LOG'), "process.env['GETIMG_AI_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
-    this.maxRetries = options.maxRetries ?? 2;
+    this.maxRetries = options.maxRetries ?? 5;
     this.fetch = options.fetch ?? Shims.getDefaultFetch();
     this.#encoder = Opts.FallbackEncoder;
 
@@ -574,8 +574,8 @@ export class Getimg {
   }
 
   private calculateDefaultRetryTimeoutMillis(retriesRemaining: number, maxRetries: number): number {
-    const initialRetryDelay = 0.5;
-    const maxRetryDelay = 8.0;
+    const initialRetryDelay = 1.0;
+    const maxRetryDelay = 10.0;
 
     const numRetries = maxRetries - retriesRemaining;
 
@@ -703,10 +703,10 @@ export class Getimg {
     }
   }
 
-  static Getimg = this;
-  static DEFAULT_TIMEOUT = 60000; // 1 minute
+  static GetimgAI = this;
+  static DEFAULT_TIMEOUT = 300000; // 5 minutes
 
-  static GetimgError = Errors.GetimgError;
+  static GetimgAIError = Errors.GetimgAIError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -733,11 +733,11 @@ export class Getimg {
   models: API.Models = new API.Models(this);
 }
 
-Getimg.Images = Images;
-Getimg.Videos = Videos;
-Getimg.Models = Models;
+GetimgAI.Images = Images;
+GetimgAI.Videos = Videos;
+GetimgAI.Models = Models;
 
-export declare namespace Getimg {
+export declare namespace GetimgAI {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
