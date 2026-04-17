@@ -1,0 +1,4 @@
+configured_endpoints: 4
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/webrockets%2Fgetimg-0929a3730a5b57a63d78b4f5484bb1393b566a766e27c0ffa9ab335804b207f6.yml
+openapi_spec_hash: a845461383b0cd98f2c1a3caeced80b2
+config_hash: f98cedd253e3fd7e6153a2e4c06f9d5e
