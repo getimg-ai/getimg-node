@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'getimg/internal/uploads';
-import { toFile } from 'getimg/core/uploads';
+import { multipartFormRequestOptions, createForm } from 'getimg-ai/internal/uploads';
+import { toFile } from 'getimg-ai/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
