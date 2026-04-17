@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 (2026-04-17)
+
+Full Changelog: [v0.1.0...v0.1.1](https://github.com/getimg-ai/getimg-node/compare/v0.1.0...v0.1.1)
+
+### Chores
+
+* update SDK settings ([1d56e12](https://github.com/getimg-ai/getimg-node/commit/1d56e12f14238dbc1ce8a8fd5f74ac10444d68d9))
+
 ## 0.1.0 (2026-04-17)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/getimg-ai/getimg-node/compare/v0.0.1...v0.1.0)

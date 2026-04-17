@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "getimg/*": ["./dist/src/*"],
-      "getimg": ["./dist/src/index.ts"]
+      "getimg-ai/*": ["./dist/src/*"],
+      "getimg-ai": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
