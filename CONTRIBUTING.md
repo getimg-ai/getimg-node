@@ -42,15 +42,15 @@ If you’d like to use the repository from source, you can either install from g
 To install via git:
 
 ```sh
-$ npm install git+ssh://git@github.com:stainless-sdks/getimg-typescript.git
+$ npm install git+ssh://git@github.com:getimg-ai/getimg-node.git
 ```
 
 Alternatively, to link a local copy of the repo:
 
 ```sh
 # Clone
-$ git clone https://www.github.com/stainless-sdks/getimg-typescript
-$ cd getimg-typescript
+$ git clone https://www.github.com/getimg-ai/getimg-node
+$ cd getimg-node
 
 # With yarn
 $ yarn link
