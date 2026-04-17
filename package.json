@@ -1,8 +1,8 @@
 {
   "name": "getimg",
   "version": "0.0.1",
-  "description": "The official TypeScript library for the Getimg API",
-  "author": "Getimg <>",
+  "description": "The official TypeScript library for the Getimg AI API",
+  "author": "Getimg AI <api@getimg.ai>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",

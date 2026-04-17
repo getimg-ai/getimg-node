@@ -16,7 +16,11 @@ before making any information public.
 ## Reporting Non-SDK Related Security Issues
 
 If you encounter security issues that are not directly related to SDKs but pertain to the services
-or products provided by Getimg, please follow the respective company's security reporting guidelines.
+or products provided by Getimg AI, please follow the respective company's security reporting guidelines.
+
+### Getimg AI Terms and Policies
+
+Please contact api@getimg.ai for any questions or concerns regarding the security of our services.
 
 ---
 

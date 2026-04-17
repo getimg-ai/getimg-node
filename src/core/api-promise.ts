@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type Getimg } from '../client';
+import { type GetimgAI } from '../client';
 
 import { type PromiseOrValue } from '../internal/types';
 import { APIResponseProps, defaultParseResponse } from '../internal/parse';
@@ -11,13 +11,13 @@ import { APIResponseProps, defaultParseResponse } from '../internal/parse';
  */
 export class APIPromise<T> extends Promise<T> {
   private parsedPromise: Promise<T> | undefined;
-  #client: Getimg;
+  #client: GetimgAI;
 
   constructor(
-    client: Getimg,
+    client: GetimgAI,
     private responsePromise: Promise<APIResponseProps>,
     private parseResponse: (
-      client: Getimg,
+      client: GetimgAI,
       props: APIResponseProps,
     ) => PromiseOrValue<T> = defaultParseResponse,
   ) {

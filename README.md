@@ -1,8 +1,8 @@
-# Getimg TypeScript API Library
+# Getimg AI TypeScript API Library
 
 [![NPM version](<https://img.shields.io/npm/v/getimg.svg?label=npm%20(stable)>)](https://npmjs.org/package/getimg) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/getimg)
 
-This library provides convenient access to the Getimg REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Getimg AI REST API from server-side TypeScript or JavaScript.
 
 The full API of this library can be found in [api.md](api.md).
 
@@ -23,9 +23,9 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import Getimg from 'getimg';
+import GetimgAI from 'getimg';
 
-const client = new Getimg({
+const client = new GetimgAI({
   apiKey: process.env['GETIMG_API_KEY'], // This is the default and can be omitted
 });
 
@@ -43,17 +43,17 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import Getimg from 'getimg';
+import GetimgAI from 'getimg';
 
-const client = new Getimg({
+const client = new GetimgAI({
   apiKey: process.env['GETIMG_API_KEY'], // This is the default and can be omitted
 });
 
-const params: Getimg.ImageGenerateParams = {
+const params: GetimgAI.ImageGenerateParams = {
   model: 'seedream-5-lite',
   prompt: 'A cinematic portrait of a cat astronaut',
 };
-const response: Getimg.ImageGenerateResponse = await client.images.generate(params);
+const response: GetimgAI.ImageGenerateResponse = await client.images.generate(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -69,7 +69,7 @@ a subclass of `APIError` will be thrown:
 const response = await client.images
   .generate({ model: 'seedream-5-lite', prompt: 'A cinematic portrait of a cat astronaut' })
   .catch(async (err) => {
-    if (err instanceof Getimg.APIError) {
+    if (err instanceof GetimgAI.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
       console.log(err.headers); // {server: 'nginx', ...}
@@ -94,7 +94,7 @@ Error codes are as follows:
 
 ### Retries
 
-Certain errors will be automatically retried 2 times by default, with a short exponential backoff.
+Certain errors will be automatically retried 5 times by default, with a short exponential backoff.
 Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,
 429 Rate Limit, and >=500 Internal errors will all be retried by default.
 
@@ -103,7 +103,7 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new Getimg({
+const client = new GetimgAI({
   maxRetries: 0, // default is 2
 });
 
@@ -115,13 +115,13 @@ await client.images.generate({ model: 'seedream-5-lite', prompt: 'A cinematic po
 
 ### Timeouts
 
-Requests time out after 1 minute by default. You can configure this with a `timeout` option:
+Requests time out after 5 minutes by default. You can configure this with a `timeout` option:
 
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new Getimg({
-  timeout: 20 * 1000, // 20 seconds (default is 1 minute)
+const client = new GetimgAI({
+  timeout: 20 * 1000, // 20 seconds (default is 5 minutes)
 });
 
 // Override per-request:
@@ -146,7 +146,7 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 
 <!-- prettier-ignore -->
 ```ts
-const client = new Getimg();
+const client = new GetimgAI();
 
 const response = await client.images
   .generate({ model: 'seedream-5-lite', prompt: 'A cinematic portrait of a cat astronaut' })
@@ -171,13 +171,13 @@ console.log(response.id);
 
 The log level can be configured in two ways:
 
-1. Via the `GETIMG_LOG` environment variable
+1. Via the `GETIMG_AI_LOG` environment variable
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import Getimg from 'getimg';
+import GetimgAI from 'getimg';
 
-const client = new Getimg({
+const client = new GetimgAI({
   logLevel: 'debug', // Show all log messages
 });
 ```
@@ -203,13 +203,13 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import Getimg from 'getimg';
+import GetimgAI from 'getimg';
 import pino from 'pino';
 
 const logger = pino();
 
-const client = new Getimg({
-  logger: logger.child({ name: 'Getimg' }),
+const client = new GetimgAI({
+  logger: logger.child({ name: 'GetimgAI' }),
   logLevel: 'debug', // Send all messages to pino, allowing it to filter
 });
 ```
@@ -272,10 +272,10 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import Getimg from 'getimg';
+import GetimgAI from 'getimg';
 import fetch from 'my-fetch';
 
-const client = new Getimg({ fetch });
+const client = new GetimgAI({ fetch });
 ```
 
 ### Fetch options
@@ -283,9 +283,9 @@ const client = new Getimg({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import Getimg from 'getimg';
+import GetimgAI from 'getimg';
 
-const client = new Getimg({
+const client = new GetimgAI({
   fetchOptions: {
     // `RequestInit` options
   },
@@ -300,11 +300,11 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import Getimg from 'getimg';
+import GetimgAI from 'getimg';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
-const client = new Getimg({
+const client = new GetimgAI({
   fetchOptions: {
     dispatcher: proxyAgent,
   },
@@ -314,9 +314,9 @@ const client = new Getimg({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import Getimg from 'getimg';
+import GetimgAI from 'getimg';
 
-const client = new Getimg({
+const client = new GetimgAI({
   fetchOptions: {
     proxy: 'http://localhost:8888',
   },
@@ -326,10 +326,10 @@ const client = new Getimg({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import Getimg from 'npm:getimg';
+import GetimgAI from 'npm:getimg';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
-const client = new Getimg({
+const client = new GetimgAI({
   fetchOptions: {
     client: httpClient,
   },
