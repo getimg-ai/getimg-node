@@ -90,6 +90,23 @@ console.log(`Sound: ${video.has_sound}`);
 console.log(`Cost: ${result.usage?.total_cost} (${result.usage?.quantity} ${result.usage?.billable_unit})`);
 ```
 
+### List available models
+
+<!-- prettier-ignore -->
+```ts
+import GetimgAI from 'getimg-ai';
+
+const client = new GetimgAI();
+
+const models = await client.models.list();
+for (const model of models) {
+  console.log(`${model.id} (${model.type}) — ${model.name}`);
+}
+
+// Optionally filter by type:
+const videoModels = await client.models.list({ type: 'video' });
+```
+
 ### Request & Response types
 
 This library includes TypeScript definitions for all request params and response fields. You may import and use them like so:
