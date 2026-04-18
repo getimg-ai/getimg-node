@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 (2026-04-18)
+
+Full Changelog: [v0.1.2...v0.2.0](https://github.com/getimg-ai/getimg-node/compare/v0.1.2...v0.2.0)
+
+### Features
+
+* **api:** manual updates ([717bc3d](https://github.com/getimg-ai/getimg-node/commit/717bc3d844f74abd94eeb92b55e515148e414d46))
+
 ## 0.1.2 (2026-04-17)
 
 Full Changelog: [v0.1.1...v0.1.2](https://github.com/getimg-ai/getimg-node/compare/v0.1.1...v0.1.2)
