@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 (2026-04-23)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/getimg-ai/getimg-node/compare/v0.2.0...v0.2.1)
+
+### Chores
+
+* **internal:** more robust bootstrap script ([018addd](https://github.com/getimg-ai/getimg-node/commit/018addd8ba70b8123b238b559b30f285452d13cd))
+
 ## 0.2.0 (2026-04-18)
 
 Full Changelog: [v0.1.2...v0.2.0](https://github.com/getimg-ai/getimg-node/compare/v0.1.2...v0.2.0)
