@@ -143,6 +143,6 @@ export declare namespace Images {
   export {
     type Usage as Usage,
     type ImageGenerateResponse as ImageGenerateResponse,
-    type ImageGenerateParams as ImageGenerateParams,
+    type ImageGenerateParams as ImageGenerateParams
   };
 }
