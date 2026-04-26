@@ -2,12 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as GenerationsAPI from './generations';
-import {
-  GenerationCreateParams,
-  GenerationCreateResponse,
-  GenerationRetrieveResponse,
-  Generations,
-} from './generations';
+import { GenerationCreateParams, GenerationCreateResponse, GenerationRetrieveResponse, Generations } from './generations';
 
 export class Videos extends APIResource {
   generations: GenerationsAPI.Generations = new GenerationsAPI.Generations(this._client);
@@ -20,6 +15,6 @@ export declare namespace Videos {
     Generations as Generations,
     type GenerationCreateResponse as GenerationCreateResponse,
     type GenerationRetrieveResponse as GenerationRetrieveResponse,
-    type GenerationCreateParams as GenerationCreateParams,
+    type GenerationCreateParams as GenerationCreateParams
   };
 }
