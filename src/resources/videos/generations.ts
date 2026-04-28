@@ -57,7 +57,10 @@ export interface GenerationCreateResponse {
   status: 'pending';
 }
 
-export type GenerationRetrieveResponse = GenerationRetrieveResponse.VideoGenerationPendingResponse | GenerationRetrieveResponse.VideoGenerationFailedResponse | GenerationRetrieveResponse.VideoGenerationCompletedResponse
+export type GenerationRetrieveResponse =
+  | GenerationRetrieveResponse.VideoGenerationPendingResponse
+  | GenerationRetrieveResponse.VideoGenerationFailedResponse
+  | GenerationRetrieveResponse.VideoGenerationCompletedResponse;
 
 export namespace GenerationRetrieveResponse {
   export interface VideoGenerationPendingResponse {
@@ -228,6 +231,6 @@ export declare namespace Generations {
   export {
     type GenerationCreateResponse as GenerationCreateResponse,
     type GenerationRetrieveResponse as GenerationRetrieveResponse,
-    type GenerationCreateParams as GenerationCreateParams
+    type GenerationCreateParams as GenerationCreateParams,
   };
 }

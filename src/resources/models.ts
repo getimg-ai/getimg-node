@@ -11,12 +11,15 @@ export class Models extends APIResource {
   /**
    * List available developer models for the authenticated project.
    */
-  list(query: ModelListParams | null | undefined = {}, options?: RequestOptions): APIPromise<ModelListResponse> {
+  list(
+    query: ModelListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ModelListResponse> {
     return this._client.get('/v2/models', { query, ...options });
   }
 }
 
-export type ModelListResponse = Array<ModelListResponse.ModelListResponseItem>
+export type ModelListResponse = Array<ModelListResponse.ModelListResponseItem>;
 
 export namespace ModelListResponse {
   export interface ModelListResponseItem {
@@ -50,8 +53,5 @@ export interface ModelListParams {
 }
 
 export declare namespace Models {
-  export {
-    type ModelListResponse as ModelListResponse,
-    type ModelListParams as ModelListParams
-  };
+  export { type ModelListResponse as ModelListResponse, type ModelListParams as ModelListParams };
 }
