@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.1 (2026-05-08)
+
+Full Changelog: [v0.3.0...v0.3.1](https://github.com/getimg-ai/getimg-node/compare/v0.3.0...v0.3.1)
+
+### Chores
+
+* redact api-key headers in debug logs ([67f4c93](https://github.com/getimg-ai/getimg-node/commit/67f4c939439435824bed3f0a555c7c1634191083))
+
 ## 0.3.0 (2026-04-30)
 
 Full Changelog: [v0.2.1...v0.3.0](https://github.com/getimg-ai/getimg-node/compare/v0.2.1...v0.3.0)
