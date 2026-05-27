@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.3 (2026-05-19)
+
+Full Changelog: [v0.3.2...v0.3.3](https://github.com/getimg-ai/getimg-node/compare/v0.3.2...v0.3.3)
+
+### Bug Fixes
+
+* **typescript:** upgrade tsc-multi so that it works with Node 26 ([63e32f0](https://github.com/getimg-ai/getimg-node/commit/63e32f023455341dc74eeae3035d51f02ba96952))
+
+
+### Chores
+
+* **tests:** remove redundant File import ([556b8a2](https://github.com/getimg-ai/getimg-node/commit/556b8a29fe468a6a7593c238a391d6f4d96b7cc6))
+
 ## 0.3.2 (2026-05-13)
 
 Full Changelog: [v0.3.1...v0.3.2](https://github.com/getimg-ai/getimg-node/compare/v0.3.1...v0.3.2)
