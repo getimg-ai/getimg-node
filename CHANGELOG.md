@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.4.0 (2026-07-18)
+
+Full Changelog: [v0.3.3...v0.4.0](https://github.com/getimg-ai/getimg-node/compare/v0.3.3...v0.4.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([8f435e3](https://github.com/getimg-ai/getimg-node/commit/8f435e330bfcd28f47b190596dcaf8e0f85b60f9))
+
+
+### Bug Fixes
+
+* **ci:** bump @arethetypeswrong/cli to ^0.18.0 and run CI workflows on Node 24 ([c71ebcc](https://github.com/getimg-ai/getimg-node/commit/c71ebcc9a4b621afc1d64e50c484b65429427f54))
+* **client:** send content-type header for requests with an omitted optional body ([cbcc27c](https://github.com/getimg-ai/getimg-node/commit/cbcc27c9590001839acecf5026936db11a28865a))
+
 ## 0.3.3 (2026-05-19)
 
 Full Changelog: [v0.3.2...v0.3.3](https://github.com/getimg-ai/getimg-node/compare/v0.3.2...v0.3.3)
