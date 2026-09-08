@@ -30,13 +30,12 @@ export class Generations extends APIResource {
   }
 
   /**
-   * Retrieve the current status for a video generation request. The response status
-   * is `pending`, `failed`, or `completed`.
+   * Retrieve the current status of a video generation request.
    *
    * @example
    * ```ts
    * const generation = await client.videos.generations.retrieve(
-   *   'x',
+   *   'req-01HXYZVIDEO1234',
    * );
    * ```
    */
@@ -155,7 +154,7 @@ export namespace GenerationRetrieveResponse {
       fps?: number | null;
 
       /**
-       * Whether the video has and audio track.
+       * Whether the video has an audio track.
        */
       has_sound?: boolean;
 
@@ -221,7 +220,11 @@ export namespace GenerationCreateParams {
     role: 'reference_image' | 'first_frame' | 'last_frame';
 
     /**
-     * Publicly accessible reference image URL.
+     * Publicly accessible HTTPS image URL or a base64 data URL
+     * (`data:image/png;base64,...`). Inline formats: PNG, JPEG, and WebP. Bare base64
+     * is not accepted. The default decoded image limit is 10 MiB; the entire JSON
+     * request must fit within 25 MiB. Base64 adds approximately 33% to the original
+     * file size.
      */
     url: string;
   }

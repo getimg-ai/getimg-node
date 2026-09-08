@@ -38,7 +38,7 @@ describe('resource generations', () => {
 
   // Mock server tests are disabled
   test.skip('retrieve', async () => {
-    const responsePromise = client.videos.generations.retrieve('x');
+    const responsePromise = client.videos.generations.retrieve('req-01HXYZVIDEO1234');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
