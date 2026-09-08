@@ -27,8 +27,23 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/models.ts">DeveloperModelRate</a></code>
+- <code><a href="./src/resources/models.ts">ModelRetrieveResponse</a></code>
 - <code><a href="./src/resources/models.ts">ModelListResponse</a></code>
 
 Methods:
 
+- <code title="get /v2/models/{model}">client.models.<a href="./src/resources/models.ts">retrieve</a>(model) -> ModelRetrieveResponse</code>
 - <code title="get /v2/models">client.models.<a href="./src/resources/models.ts">list</a>({ ...params }) -> ModelListResponse</code>
+
+# Billing
+
+Types:
+
+- <code><a href="./src/resources/billing.ts">BillingListCostsResponse</a></code>
+- <code><a href="./src/resources/billing.ts">BillingRetrieveBalanceResponse</a></code>
+
+Methods:
+
+- <code title="get /v2/billing/costs">client.billing.<a href="./src/resources/billing.ts">listCosts</a>({ ...params }) -> BillingListCostsResponse</code>
+- <code title="get /v2/billing/balance">client.billing.<a href="./src/resources/billing.ts">retrieveBalance</a>() -> BillingRetrieveBalanceResponse</code>

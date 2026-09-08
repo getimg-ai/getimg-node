@@ -17,8 +17,20 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
+import {
+  Billing,
+  BillingListCostsParams,
+  BillingListCostsResponse,
+  BillingRetrieveBalanceResponse,
+} from './resources/billing';
 import { ImageGenerateParams, ImageGenerateResponse, Images, Usage } from './resources/images';
-import { ModelListParams, ModelListResponse, Models } from './resources/models';
+import {
+  DeveloperModelRate,
+  ModelListParams,
+  ModelListResponse,
+  ModelRetrieveResponse,
+  Models,
+} from './resources/models';
 import { Videos } from './resources/videos/videos';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -751,11 +763,16 @@ export class GetimgAI {
    * Endpoints for listing available developer models.
    */
   models: API.Models = new API.Models(this);
+  /**
+   * Developer API balance and usage costs.
+   */
+  billing: API.Billing = new API.Billing(this);
 }
 
 GetimgAI.Images = Images;
 GetimgAI.Videos = Videos;
 GetimgAI.Models = Models;
+GetimgAI.Billing = Billing;
 
 export declare namespace GetimgAI {
   export type RequestOptions = Opts.RequestOptions;
@@ -771,7 +788,16 @@ export declare namespace GetimgAI {
 
   export {
     Models as Models,
+    type DeveloperModelRate as DeveloperModelRate,
+    type ModelRetrieveResponse as ModelRetrieveResponse,
     type ModelListResponse as ModelListResponse,
     type ModelListParams as ModelListParams,
+  };
+
+  export {
+    Billing as Billing,
+    type BillingListCostsResponse as BillingListCostsResponse,
+    type BillingRetrieveBalanceResponse as BillingRetrieveBalanceResponse,
+    type BillingListCostsParams as BillingListCostsParams,
   };
 }
