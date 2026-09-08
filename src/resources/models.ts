@@ -9,7 +9,8 @@ import { RequestOptions } from '../internal/request-options';
  */
 export class Models extends APIResource {
   /**
-   * List available developer models for the authenticated project.
+   * List the models available to your project with their supported parameters and
+   * pricing.
    */
   list(
     query: ModelListParams | null | undefined = {},
@@ -38,10 +39,76 @@ export namespace ModelListResponse {
      */
     name: string;
 
+    pricing: ModelListResponseItem.Pricing;
+
+    /**
+     * Supported aspect ratios in default order; the first is used when omitted.
+     */
+    supported_aspect_ratios: Array<string>;
+
+    /**
+     * Supported durations in seconds; empty for image models. The first is the
+     * default.
+     */
+    supported_durations: Array<number>;
+
+    /**
+     * Maximum reference count per supported role (reference_image, first_frame,
+     * last_frame).
+     */
+    supported_references: { [key: string]: number };
+
+    /**
+     * Supported resolutions in default order; the first is used when omitted.
+     */
+    supported_resolutions: Array<string>;
+
+    /**
+     * Whether sound generation is supported.
+     */
+    supports_sound: boolean;
+
     /**
      * The generation type supported by the model.
      */
     type: 'image' | 'video';
+  }
+
+  export namespace ModelListResponseItem {
+    export interface Pricing {
+      currency: 'USD';
+
+      /**
+       * Currently effective catalog rates, ordered by unit price. Empty when no active
+       * rates are configured; this does not mean generation is free.
+       */
+      rates: Array<Pricing.Rate>;
+    }
+
+    export namespace Pricing {
+      export interface Rate {
+        /**
+         * Unit billed, such as image or video_second.
+         */
+        billable_unit: string;
+
+        /**
+         * Resolution this rate applies to, or null for a resolution-independent rate.
+         */
+        resolution: string | null;
+
+        /**
+         * Sound setting this rate applies to; not_applicable also serves as a video
+         * fallback.
+         */
+        sound: 'sound_on' | 'sound_off' | 'not_applicable';
+
+        /**
+         * USD price per billable unit, represented as a decimal string.
+         */
+        unit_price: string;
+      }
+    }
   }
 }
 
